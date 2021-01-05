@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewData["Title"] = "Success";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    body {
+        background-color: white;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .bolden {
+        color: #27173E;
+        font-size: 17px;
+        font-weight: 500
+    }
+</style>
+<!-- App Capsule -->
+<div id="appCapsule">
+
+    <div class="section">
+
+        <div class="listed-detail mt-3">
+            <div class="icon-wrapper">
+                <div class="iconbox">
+                    <ion-icon name="arrow-down-outline"></ion-icon>
+                </div>
+            </div>
+            <h3 class="text-center mt-2">Payment Received</h3>
+        </div>
+
+        <ul class="listview simple-listview no-space mt-3">
+            <!--<li class="hidden">
+        <span>From</span>
+        <strong><label id="from"></label></strong>
+    </li>
+    <li class="hidden">
+        <span>Bank Name</span>
+        <strong><label id="bank"></label></strong>
+    </li>-->
+            <li>
+                <span>Date</span>
+                <strong><label id="dealdate"></label></strong>
+            </li>
+            <li>
+                <span>Transaction Number</span>
+                <strong><label id="transnumb"></label></strong>
+            </li>
+            <li>
+                <span>Delivery Number</span>
+                <strong><label id="dealcode"></label></strong>
+            </li>
+            <li>
+                <span>Amount Paid</span>
+                <strong>&#8358; <label id="naira1"></label></strong>
+            </li>
+        </ul>
+        <div class="fixed-bar">
+            <div class="row">
+                <div class="col-12">
+                    <a href="/buyer" class="btn btn-lg btn-primary btn-block">
+                        <div class="in">
+                            <div>All Done</div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DialogIconedDanger -->
+<div class="modal fade dialogbox" id="DialogIconedDanger" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-danger">
+                <ion-icon name="close-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+            </div>
+            <div class="modal-body">
+                Something went wrong. <br /> <a href="javascript:location.reload();">Tap here to re-try</a>.
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * DialogIconedDanger -->
+<!-- DialogIconedSuccess -->
+<div class="modal fade dialogbox" id="DialogIconedSuccess" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-success">
+                <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Delivery Number</h5>
+            </div>
+            <div class="modal-body bolden">
+                Your Delivery Number is: <br /> <strong class="text-primary"><label id="deliverycode"></label></strong>. <br>This number will be used to access your Item(s) at the pick-up point.
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * DialogIconedSuccess -->
+<!-- * App Capsule -->
+<input type="hidden" id="PayStackSuccess" />
+<script>
+
+    var uri = "http://medicall-002-site7.ctempurl.com/api/ahhtapi";
+    //var uri = "http://localhost:49244/api/ahhtapi";
+
+  
+    function PayStackItems() {
+
+        var accountname = localStorage.getItem("account_name").replace('%20', ' ');
+        var bankname = localStorage.getItem("bank_name").replace('%20', ' ');
+        var cost = localStorage.getItem("transaction_cost");
+
+
+        var _money = formatMoney(parseFloat(cost));
+        document.getElementById('naira1').innerHTML = _money;
+
+        var _query = location.search.split('=');
+        //DeliveryCode(_query[1]);
+
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        $.ajax({
+            type: "GET",
+            url: "/Utility/GetDeliveryCode/",
+            contentType: "application/json; charset=utf-8",
+            data: {
+                'transcode': _query[1]
+            },
+            dataType: "json",
+            success: function (data) {
+                fetchData(data);
+            },
+            error: function (err) {
+                $("#DialogIconedDanger").modal('show')
+            }
+        });
+        //fetch(uri+"/getdeliverycode?transcode=" + _query[1], requestOptions)
+        //    .then(response => {
+        //        if (!response.ok) {
+        //            $("#DialogIconedDanger").modal('show');
+        //        }
+        //        return response.json();
+        //    })
+        //    .then(result => fetchData(result))
+        //    .catch(error => $("#DialogIconedDanger").modal('show'));
+    }
+
+    function fetchData(data) {
+        if (data) {
+            data.forEach(item => {
+                document.getElementById('deliverycode').innerHTML = item.confirmationCode;
+                document.getElementById('dealdate').innerHTML = item.transactionDate;
+                document.getElementById('transnumb').innerHTML = item.sellerTransactionCode;
+                
+                /*document.getElementById('from').innerHTML = item.buyerAccountName;
+                document.getElementById('bank').innerHTML = item.buyerBankName;*/
+                document.getElementById('dealcode').innerHTML = item.confirmationCode;
+
+                $("#DialogIconedSuccess").modal('show');
+            });
+
+        }
+    }
+
+    function formatMoney(number, decPlaces, decSep, thouSep) {
+        return number.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+        //decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+        //    decSep = typeof decSep === "undefined" ? "." : decSep;
+        //thouSep = typeof thouSep === "undefined" ? "," : thouSep;
+        //var sign = number < 0 ? "-" : "";
+        //var i = String(parseInt(number = Math.abs(Number(number) || 0).toFixed(decPlaces)));
+        //var j = (j = i.length) > 3 ? j % 3 : 0;
+
+        //return sign +
+        //    (j ? i.substr(0, j) + thouSep : "") +
+        //    i.substr(j).replace(/(\decSep{3})(?=\decSep)/g, "$1" + thouSep) +
+        //    (decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
+    }
+
+    const DeliveryCode = async (_transcode) => {
+        try {
+            const option = {
+                method: 'GET',
+                redirect: 'follow'
+            }
+
+
+
+            const res = await fetch(uri + "/getdeliverycode?transcode=" + _transcode, option);
+            if (!res.ok) {
+                console.log(res);
+                throw new Error(res.status);
+            }
+            const data = await res.json();
+
+            if (data) {
+                data.forEach(item => {
+                    document.getElementById('deliverycode').innerHTML = item.confirmationCode;
+                    document.getElementById('dealdate').innerHTML = item.transactionDate;
+
+                });
+
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+</script>

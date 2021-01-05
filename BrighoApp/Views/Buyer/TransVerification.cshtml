@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewData["Title"] = "TransVerification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<script src="https://js.paystack.co/v2/inline.js"></script>*@
+<script type="text/javascript" src="https://sdk.monnify.com/plugin/monnify.js"></script> 
+<style>
+    hidden {
+        display: none
+    }
+</style>
+<!-- App Header -->
+<div class="appHeader no-border">
+    <div class="left">
+        <a href="#" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+        Transaction Verification
+    </div>
+    <div class="right">
+
+    </div>
+</div>
+<!-- * App Header -->
+<!-- App Capsule -->
+<div id="appCapsule">
+
+    <div class="section">
+        <div class="splash-page mt-5 mb-5">
+
+            <div class="transfer-verification">
+                <div class="transfer-amount">
+                    <span class="caption">Amount</span>
+                    <h2>&#8358; <label id="naira1"></label></h2>
+                </div>
+                <div class="from-to-block mb-5">
+                    <div class="item text-left">
+                        <img src="/images/avatars/13s.png" alt="avatar" class="imaged w48">
+                        <strong>You</strong>
+                    </div>
+                    <div class="item text-right">
+                        <img src="/assets/img/apple-touch-iconx.png" height="150" width="150" alt="avatar" class="imaged w48">
+                        <strong>Brigho</strong>
+                    </div>
+                    <div class="arrow"></div>
+                </div>
+            </div>
+            <h2 class="mb-2 mt-2">Verify the Transaction</h2>
+            <p>
+                You are sending <strong class="text-primary">&#8358; <label id="naira2"></label></strong> to Brigho. <br>Are you sure?
+            </p>
+        </div>
+    </div>
+
+    <div class="fixed-bar">
+        <div class="row">
+            <div class="col-6">
+                <a id="hidePayment1" href="/buyer" class="btn btn-lg btn-outline-secondary btn-block">Cancel</a>
+            </div>
+            <div class="col-6">
+                <a id="hidePayment2" href="javascript:payWithPaystack();" class="btn btn-lg btn-primary btn-block">Confirm</a>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary btn-block shadowed" style="display:none" type="button" disabled id="btnProgress">
+                    <span class="spinner-border spinner-border-sm mr-05" role="status" aria-hidden="true"></span>
+                    Processing...
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- * App Capsule -->
+<!-- DialogIconedDanger -->
+<div class="modal fade dialogbox" id="DialogIconedAllFieldsDanger" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-danger">
+                <ion-icon name="close-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+            </div>
+            <div class="modal-body">
+                Could not log your payment. <a href="javascript:reProcessPayment();">please click here to try again.</a>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * DialogIconedDanger -->
+<script>
+    PayStackItems();
+    function PayStackItems() {
+        var _query = location.search.split('=');
+        console.log(_query);
+        localStorage.setItem("TransCode", _query[1].split('&')[0]);
+        localStorage.setItem("account_name", _query[2].split('&')[0]);
+        localStorage.setItem("email_address", _query[3].split('&')[0]);
+        localStorage.setItem("bank_name", _query[4].split('&')[0].replace("%20", ' '));
+        localStorage.setItem("transaction_cost", _query[5].split('.')[0].replace(',', ''));
+
+
+        var _money = formatMoney(parseFloat(_query[5]));
+        document.getElementById('naira1').innerHTML = _money;
+        document.getElementById('naira2').innerHTML = _money;
+    }
+
+    function formatMoney(number, decPlaces, decSep, thouSep) {
+
+        return number.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        //decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+        //    decSep = typeof decSep === "undefined" ? "." : decSep;
+        //thouSep = typeof thouSep === "undefined" ? "," : thouSep;
+        //var sign = number < 0 ? "-" : "";
+        //var i = String(parseInt(number = Math.abs(Number(number) || 0).toFixed(decPlaces)));
+        //var j = (j = i.length) > 3 ? j % 3 : 0;
+
+        //return sign +
+        //    (j ? i.substr(0, j) + thouSep : "") +
+        //    i.substr(j).replace(/(\decSep{3})(?=\decSep)/g, "$1" + thouSep) +
+        //    (decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
+    }
+</script>

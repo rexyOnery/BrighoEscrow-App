@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewData["Title"] = "TransactionDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .sly-success {
+        color: #00B050;
+    }
+
+    .sly-warning {
+        color: #FFC000;
+    }
+
+    .sly-danger {
+        color: #FF0000
+    }
+</style>
+
+<div class="section mt-2 mb-2">
+
+
+    <div class="listed-detail mt-3">
+        <div class="icon-wrapper">
+            <div class="iconbox">
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+            </div>
+        </div>
+        <h3 class="text-center mt-2">Transaction Details</h3>
+    </div>
+    <div class="spinner-grow text-warning" id="veriSpinnerx" role="status"></div>
+    <ul class="listview flush transparent simple-listview no-space mt-3">
+        <li>
+            <h3 class="m-0" id="transaction-details"></h3>
+        </li>
+        <li>
+            <strong>Seller's Bank</strong>
+            <span id="transaction-bank-name"></span>
+        </li>
+        <li>
+            <strong>Seller's Account Name</strong>
+            <span id="transaction-account-name"></span>
+        </li>
+        <li>
+            <strong>Seller's Account Number</strong>
+            <span id="transaction-account-number"></span>
+        </li>
+        <li>
+            <strong>Seller's Phone</strong>
+            <span id="transaction-phone"></span>
+        </li>
+        <li>
+            <strong>Buyer's Phone Number</strong>
+            <span id="buyer-phone"></span>
+        </li>
+        <li>
+            <strong>Transaction Number</strong>
+            <span id="transaction-code"></span>
+        </li>
+        <li>
+            <strong>Date</strong>
+            <span id="transaction-date"></span>
+        </li>
+        <li id="delivery_number" class="hidden">
+        </li>
+        <li>
+            <strong>Amount</strong>
+            <h3 class="m-0" id="total-cost"></h3>
+        </li>
+        <li id="refunds" class="hidden">
+        </li>
+    </ul>
+
+    <div class="form-button-group transparent hidden">
+        <div class="spinner-grow text-info hidden" id="veriSpinner" role="status"></div>
+        <a href="javascript:sellertransdetailcheckStat();" id="aCheck" class="btn btn-primary btn-block btn-lg">Check Status</a>
+
+        <button class="btn btn-primary btn-block shadowed hidden" type="button" disabled id="btnProgress">
+            <span class="spinner-border spinner-border-sm mr-05" role="status" aria-hidden="true"></span>
+            Processing...
+        </button>
+    </div>
+</div>
+<div class="section full mt-5" id="span_stats">
+    <div class="wide-block pt-2 pb-2">
+        <div class="content-header mb-05"><h4>Transaction Status</h4></div>
+        <h3><span id="transStatus"></span></h3>
+        <h3><span id="transStatus2"></span></h3>
+        <div class="content-footer mt-05"></div>
+    </div>
+</div>
+
+<!-- DialogIconedDanger -->
+<div class="modal fade dialogbox" id="DialogIconedDanger" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-danger">
+                <ion-icon name="close-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+            </div>
+            <div class="modal-body">
+                There is something wrong. <a href="javascript:location.reload();">Please click here to try again</a>.
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="trans-code" />
+<input type="hidden" id="sellertransactiondetpage" />
+<!-- * DialogIconedDanger -->
+<script>
+    var uri = "http://medicall-002-site7.ctempurl.com/api/ahhtapi";
+    //var uri = "http://localhost:49244/api/ahhtapi";
+
+    
+</script>

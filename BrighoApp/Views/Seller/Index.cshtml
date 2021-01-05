@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewData["PageTitle"] = "Seller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+<!-- App Capsule -->
+<!-- Wallet Card -->
+<div class="section wallet-card-section pt-1">
+    <div class="wallet-card">
+        <!-- Balance -->
+        <div class="balance">
+            <div class="left">
+                <h2><span class="title">SELLER</span></h2>
+                <h1 class="total">DASHBOARD</h1>
+            </div>
+            <div class="right">
+                <a href="/seller/newtransaction" class="button">
+                    <ion-icon name="add-outline"></ion-icon>
+                </a>
+
+            </div>
+        </div>
+        <!-- * Balance -->
+    </div>
+</div>
+
+<!-- Transactions -->
+<div class="section mt-4">
+    <div class="section-heading">
+        <h2 class="title">Transactions</h2>
+        @*<a href="app-transactions.html" class="link">View All</a>*@
+    </div>
+    <div class="spinner-grow text-warning text-center" id="veriSpinner" role="status"></div>
+    <ul class="nav nav-tabs lined" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="nav-all" data-toggle="tab" href="#overview2" role="tab">
+                View All
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-progress" data-toggle="tab" href="#inprogress" role="tab">
+                In Progress
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-completed" data-toggle="tab" href="#completed" role="tab">
+                Completed
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-cancelled" data-toggle="tab" href="#canceled1" role="tab">
+                Canceled
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content mt-2">
+        <div class="tab-pane fade show active" id="overview2" role="tabpanel">
+            <div class="transactions">
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="inprogress" role="tabpanel">
+            <div class="transactions">
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="completed" role="tabpanel">
+            <div class="transactions">
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="canceled1" role="tabpanel">
+            <div class="transactions">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * Transactions -->
+<!-- app footer -->
+<div class="appFooter">
+    <div class="footer-title">
+        Copyright © Brigho @DateTime.Now.Year. All Rights Reserved.
+    </div>
+    Holding your transaction in trust.
+</div>
+<!-- * app footer -->
+<!-- * App Capsule -->
+<!-- App Bottom Menu -->
+<div class="appBottomMenu">
+    <div class="col">
+        <strong>Seller</strong>
+        <div class="table-responsive">
+            <table class="table table-striped rounded">
+
+                <tbody>
+                    <tr>
+
+                        <td>
+                            <a href="/seller" class="item active">
+                                <div class="col">
+                                    <i class="icon ion-md-contacts"></i>
+                                    <strong>Dashboard</strong>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascript:buyerinprogress();" class="item">
+                                <div class="col">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                    <strong>IN Progress</strong>
+                                    <span class="badge badge-danger" id="spnSellerAlerts">0</span>
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col">
+        <strong>Buyer</strong>
+        <div class="table-responsive">
+            <table class="table table-striped rounded">
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="/buyer" class="item">
+                                <div class="col">
+                                    <i class="icon ion-ios-contacts"></i>
+                                    <strong>Dashboard</strong>
+                                </div>
+                            </a>
+                        </td>
+                        <td> 
+                            <a href="/buyer?page=2" class="item">
+                                <div class="col">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                    <strong>In Progress</strong>
+                                    <span class="badge badge-danger" id="spnBuyerAlerts">0</span>
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ 
+<!-- * App Bottom Menu -->
+<!-- DialogIconedDanger -->
+<div class="modal fade dialogbox" id="DialogIconedDanger" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-danger">
+                <ion-icon name="close-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+            </div>
+            <div class="modal-body">
+                There is something wrong. please try again.
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * DialogIconedDanger -->
+<!-- DialogIconedDanger -->
+<div class="modal fade dialogbox" id="DialogIconedEmpty" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-danger">
+                <ion-icon name="close-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Message</h5>
+            </div>
+            <div class="modal-body">
+                This is seller default page. There is no seller item at the moment.<br />
+                <a href="/buyer">Click here to go to the buyer's page</a>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * DialogIconedDanger -->
+<!-- DialogIconedSuccess -->
+<div class="modal fade dialogbox" id="DialogIconedCompleted" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-success">
+                <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Success</h5>
+            </div>
+            <div class="modal-body">
+                This transaction has been completed and closed
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * DialogIconedSuccess -->
+<input type="hidden" id="sellerpage" />
+<script>
+    
+</script>

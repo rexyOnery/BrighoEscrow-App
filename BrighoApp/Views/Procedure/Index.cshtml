@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Brigho</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Finapp HTML Mobile Template">
+    <meta name="keywords" content="bootstrap, mobile template, cordova, phonegap, mobile, html, responsive" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+</head>
+
+<body>
+
+    <!-- loader -->
+    <div id="loader">
+        <img src="assets/img/logo-icon.png" alt="icon" class="loading-icon">
+    </div>
+    <!-- * loader -->
+    <!-- App Header -->
+    <div class="appHeader">
+        <div class="left">
+            <a href="javascript:;" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+        </div>
+    </div>
+    <!-- * App Header -->
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2 text-center">
+            <div class="card">
+                <div class="card-body pt-3 pb-3">
+                    
+                    <h2 class="mt-2"> Procedure for Transactions on Brigho</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section mt-2 listview simple-listview inset">
+
+            <div style="padding:10px">
+                Before using this App, it is expected that the Buyer
+                and Seller have already agreed on the following transaction modalities at the barest minimum
+                <ul>
+                    <li>
+                        cost of the item(s),
+                    </li>
+                    <li>
+                        cost of shipping/delivery/transportation,
+                    </li>
+                    <li>
+                        point of collection
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section mt-2 listview simple-listview inset">
+            <p style="padding:10px">
+                Below are the procedures after these above have been agreed
+            </p>
+
+            <p>
+                <ol>
+                    <li>
+                        The Seller uses the Brigho app to start the process of the transaction by clicking the PLUS bottom on
+                        the Seller’s Dashboard.
+                    </li>
+                    <li>
+                        Seller inputs his details including Banking details (which will be credited soon as the transaction
+                        is completed), his/her phone number (which will be used in communication between all transactional parties);
+                        the Buyer’s phone number (which will be used in communication between all transactional parties); the agreed
+                        cost of the item(s) and the agreed cost of shipping/delivery/transportation.
+                    </li>
+                    <li>
+                        The app will automatically calculate our commission. See our ToC&U. The app will also calculate the total
+                        cost of the transaction.
+                    </li>
+                    <li>
+                        The Seller then submits the transaction for approval and consent by the Buyer.
+                    </li>
+                    <li>
+                        Brigho will instantly send a Transaction Number to the Buyer. The Buyer will use this number to approve the
+                        transaction as well as track its status.
+                    </li>
+                    <li>
+                        The Buyer then uses the Transaction Number to view the transaction entered by the Seller on the app and if
+                        satisfied with the details of the transaction entered by the Seller, he or she then verifies then accepts
+                        the transaction and is redirected to a secured page for payment.
+                    </li>
+                    <li>
+                        After payment in made the Buyer will receive a Delivery Number. This number shall be used only to claim the item(s).
+                    </li>
+                    <li>
+                        At the point of collecting the item(s), the Buyer shall verify the Delivery Number upon which s/he will be
+                        asked “Are you satisfied with the item(s)?”.
+                    </li>
+                    <li>
+                        The Buyer then clicks the “Are you satisfied with the item(s)?” button, and will then choose from the two options below
+                        <blockquote>
+                            <ul>
+                                <li>
+                                    <strong>Satisfied. Pay the Seller:</strong> This should be clicked only when the Buyer is satisfied with the item(s) and is willing to pay the Seller.
+                                </li>
+                                <li>
+                                    <strong>Not Satisfied. Please Refund:</strong> This should be clicked only if the Buyer is not satisfied with the item(s) and wants to be refunded.
+                                </li>
+                            </ul>
+                        </blockquote>
+                    </li>
+                    <li>
+                        Should the Buyer click the <strong><i>“Satisfied. Pay the Seller”</i></strong> button, Brigho will pay the Seller his/her full
+                        financial entitlement from the transaction straight into the appropriate bank account(s) within 24hrs.
+                    </li>
+                    <li>
+                        At the point of collecting the goods, the Buyer still has the last option of declining the item(s)
+                        if he or she is dissatisfied with the item(s).
+                    </li>
+                    <li>
+                        Should the Buyer be dissatisfied with the item(s) sent by the Seller, it is expected that the Buyer
+                        declines the transaction by clicking on the <strong><i>“Not Satisfied. Please Refund”</i></strong> button.
+                    </li>
+                    <li>
+                        The app will then display a breakdown of the amount to be refunded. The Buyer then confirms the refund
+                        by clicking <strong>“YES”</strong> and app will then request for the refund account of the Buyer.
+                    </li>
+                    <li>
+                        The Buyer then clicks <strong>“Refund”</strong> and Brigho will refund the appropriate amount into the
+                        Buyers bank account within 24hrs. See our ToC&U.
+                    </li>
+                </ol>
+            </p>
+
+        </div>
+
+
+
+    </div>
+    <!-- * App Capsule -->
+    <!-- * App Sidebar -->
+    <!-- ///////////// Js Files ////////////////////  -->
+    <!-- Jquery -->
+    <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap-->
+    <script src="assets/js/lib/popper.min.js"></script>
+    <script src="assets/js/lib/bootstrap.min.js"></script>
+    <!-- Ionicons -->
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <!-- Owl Carousel -->
+    <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Base Js File -->
+    <script src="assets/js/base.js"></script>
+
+
+</body>
+
+</html>

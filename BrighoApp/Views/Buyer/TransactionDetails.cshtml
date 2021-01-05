@@ -1,0 +1,354 @@
+﻿
+@{
+    ViewData["Title"] = "TransactionDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .sly-success {
+        color: #00B050;
+    }
+
+    .sly-warning {
+        color: #FFC000;
+    }
+
+    .sly-danger {
+        color: #FF0000
+    }
+</style>
+<input type="hidden" id="brighoShow" />
+<div class="section mt-2 mb-2">
+
+
+    <div class="listed-detail mt-3">
+        <div class="icon-wrapper">
+            <div class="iconbox">
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+            </div>
+        </div>
+        <h3 class="text-center mt-2">Transaction Details</h3>
+    </div>
+    <div class="spinner-grow text-warning hidden" id="veriSpinnerx" role="status"></div>
+    <ul class="listview flush transparent simple-listview no-space mt-3">
+        <li>
+            <h3 class="m-0" id="transaction-details"></h3>
+        </li>
+        <li>
+            <strong>Date</strong>
+            <span id="transaction-date"></span>
+        </li>
+        <li>
+            <strong>Buyer's Phone Number</strong>
+            <span id="transaction-phone"></span>
+        </li>
+        <li>
+            <strong>Seller's Phone Number</strong>
+            <span id="seller-phone"></span>
+        </li>
+        <li id="transcodec">
+            <strong>Transaction Number</strong>
+            <h3 class="m-0" id="transaction-code"></h3>
+        </li>
+        <li id="deliveryid">
+            <strong>Delivery Number</strong>
+            <span id="delivery-code"></span>
+        </li>
+        <li>
+            <strong>Cost of the Item</strong>
+            <span id="transaction-agreed"></span>
+        </li>
+        <li>
+            <strong>Cost of Delivery</strong>
+            <span id="transaction-ship"></span>
+        </li>
+        <li>
+
+            <div class="detail">
+
+                <div>
+                    <strong>Brigho Commission </strong>
+                    <p class="input-info color-green-dark" style="line-height:normal"> [Our 2.5% charge on the <br />cost of the item(s) on<br /> this transaction]</p>
+
+                </div>
+            </div>
+            <div class="right">
+                <div class="price" id="transaction-commission"></div>
+            </div>
+        </li>
+        <li>
+            <strong id="not_paid">Total Cost</strong>
+            <strong class="hidden" id="is_paid">YOU HAVE PAID</strong>
+            <h3 class="m-0" id="total-cost"></h3>
+        </li>
+        <li id="refunds" class="hidden"> 
+        </li>
+    </ul>
+    <input type="hidden" id="trans-id" />
+
+</div>
+<div id="followup2" class="">
+    <div class="section mt-2">
+        <div class="section-title"></div>
+        <div class="card">
+            <div class="card-body">
+                <div class="custom-control custom-checkbox d-inline">
+                    <input type="checkbox" class="custom-control-input" id="chkTOC" onclick="javascript: showAccept();" />
+                    <label class="custom-control-label p-0" for="chkTOC"></label>
+                </div>
+                By checking this box, you agree to our <a href="#" data-toggle="modal" data-target="#ModalBasic">
+                    terms of contract and use
+                </a>and the cost of transaction and its content displayed above as inputed by the Seller.
+            </div>
+        </div>
+    </div>
+
+    <div class="section mt-2">
+        <div class="section-title"></div>
+        <div class="card">
+            <div class="card-body">
+                <button type="button" id="btnAccept" disabled class="btn btn-success btn-block shadowed">ACCEPT</button>
+                <button class="btn btn-primary btn-block shadowed hidden" type="button" disabled id="btnProgress">
+                    <span class="spinner-border spinner-border-sm mr-05" role="status" aria-hidden="true"></span>
+                    Processing...
+                </button>
+            </div>
+            <input type="hidden" id="trans-id" />
+            <div class="card-body">
+                <a href="javascript:doDecline()" id="btnDecline" class="btn btn-danger btn-block shadowed">DECLINE</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section mt-2 hidden" id="followup">
+    <div class="section-title"></div>
+    <div class="card">
+        <div class="card-body">
+            <a href="javascript: followmeup();" id="btnFollow" class="btn btn-primary btn-block shadowed">Verify Transaction</a>
+
+            <button class="btn btn-primary btn-block shadowed hidden" type="button" disabled id="btnProgress">
+                <span class="spinner-border spinner-border-sm mr-05" role="status" aria-hidden="true"></span>
+                Processing...
+            </button>
+        </div>
+
+        <div class="card-body">
+            <a href="javascript:doDecline()" id="btnDecline" class="btn btn-danger btn-block shadowed">DECLINE</a>
+        </div>
+    </div>
+</div>
+<div class="section mb-5 p-2 hidden" id="delivery">
+    <form>
+        <div class="form-button-group transparent">
+            <a href="javascript: delivercode();" id="btnCodify" class="btn btn-primary btn-block shadowed">Collect Item(s)</a>
+
+            <button class="btn btn-primary btn-block shadowed hidden" type="button" disabled id="btnCodifyProgress">
+                <span class="spinner-border spinner-border-sm mr-05" role="status" aria-hidden="true"></span>
+                Processing...
+            </button>
+        </div>
+
+    </form>
+</div>
+<div class="section full mt-5 hidden" id="span_stats">
+    <div class="wide-block pt-2 pb-2">
+        <div class="content-header mb-05"><h4>Transaction Status</h4></div>
+        <h3><span id="span_transact_status"></span></h3>
+        <div class="content-footer mt-05"></div>
+    </div>
+</div>
+<!-- DialogIconedDanger -->
+<div class="modal fade dialogbox" id="DialogIconedDanger" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon text-danger">
+                <ion-icon name="close-circle"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+            </div>
+            <div class="modal-body">
+                There is something wrong. <a href="javascript:location.reload();">Please click here to try again</a>.
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * DialogIconedDanger -->
+
+<div class="modal fade modalbox" id="ModalBasic" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms of Contract and Use</h5>
+                <a href="javascript:;" data-dismiss="modal">Close</a>
+            </div>
+            <div class="modal-body section mt-2 listview simple-listview inset">
+                <p>
+                    <div class="listview-title mt-2"><h2> What is Brigho?</h2></div>
+
+                </p>
+                <p style="text-justify:auto">
+                    Brigho is owned by Brigho and HadRelTah ltd which is a financial intermediary company registered with
+                    <span class="color-facebook">RC1760904</span> under Nigerian Law with the Corporate Affairs Commission. We can sue and be sued by our clients
+                    in cases of breach of contracts between us and our clients.  We play the role of an intermediary in a
+                    distribution or transaction chain and we facilitate interaction between the involved parties. We
+                    specialize in performing crucial activities involved in the purchase and sale of goods in their flow
+                    from producers to the ultimate buyers.
+
+                </p>
+                <p style="text-justify:newspaper  ">
+                    We are not a haulage company and under no circumstances do we handle items on behalf of any Buyer or Seller.
+                </p>
+                <p style="">
+                    By agreeing to use our services and platform, there must be a prior agreement between a Seller(s) and a Buyer(s).
+                    Such agreements between the Seller and the Buyer will include at a minimum
+                    <ul style="">
+                        <li>
+                            Price of the item the Seller is willing to sell and the Buyer is equally willing to buy; and
+                        </li>
+                        <li>
+                            Cost of delivery of the item in question
+                        </li>
+                        <li>
+                            Collection point at which the Buyer shall pick up the item being sent by the Seller
+                        </li>
+                    </ul>
+                </p>
+                <p style="">
+                    <div class=""><h2>Who May Use Our Services?</h2></div>
+
+                </p>
+                <p style="">
+                    <ul style="">
+                        <li>
+                            Anyone who is willing to Sell or send items to a Buyer
+                        </li>
+                        <li>
+                            Anyone who is willing to buy or receive items from a Seller who owns a Bank account domiciled in any Nigerian commercial bank
+                        </li>
+                        <li>
+                            Anyone who is 18 years and above
+                        </li>
+                    </ul>
+                </p>
+                <p style="">
+                    <div class=""><h2>Service We Render</h2></div>
+
+                </p>
+                <p style="">
+                    Brigho serves as an intermediary between two or more people who have agreed between and/or among
+                    themselves to carry out a financial transaction for the exchange or a item. We receive money from
+                    the potential Buyer, safe-keep the money in our custody for both the Buyer and the Seller. Only when both
+                    the Seller and the Buyer complete the transaction do we send money for the item to the Seller.
+                    A completed transaction is one in which the Buyer has collected the item sent by the Seller.
+                    <span class="color-blue-light">
+                        For this service we take a small commission of 2.5% on every transaction.
+                    </span>
+                </p>
+                <p style="">
+                    When the transaction cannot be completed between the Seller and the Buyer for whatever reason, money sent by the Buyer to Brigho for the purchase of the item is sent back to the Buyers account less the cost of delivery (which goes to the Seller) and the commission of 2.5% which goes to Brigho.
+                </p>
+                <p style="">
+                    Brigho thus operates a functional warehousing account through which a Seller and a Buyer not too familiar with one another can successfully transact a business. We provide trust and assurance between two or more unknown parties who are interested in carrying out a transaction thus enabling and encouraging Nigerians to sell their items.
+                </p>
+                <p style="">
+                    As a registered company under Nigerian Law of CAMA Act, you can be assured your money is in safe custody and
+                </p>
+                <p style="">
+                    We protect both the Buyer and the Seller from loss of funds particularly in cases where neither know themselves.
+                </p>
+                <p style="">
+                    <div class=""><h2> Financial Breach of Contract Between the Seller and the Buyer</h2></div>
+
+                </p>
+                <p style="">
+                    <ul style="">
+                        <li>
+                            In the event that upon sending the item, the Seller decides S/he no longer wants to consummate the transaction (for whatever reason), the total sum of money paid to Brigho by the Buyer for the purchase of the item shall be returned to the Buyer without any exception(s).
+                        </li>
+                        <li>
+                            Should upon receipt of the item, the Buyer decides S/he no longer wants to consummate the transaction (for whatever reason), the total sum of money paid to Brigho by the Buyer for the purchase of the item shall be returned to the Buyer less the total cost of Delivery and the mandatory commission paid to Brigho.
+                        </li>
+                        <li>
+                            In the event the Buyer is not willing to consummate the transaction upon receipt of the item, the total cost of delivery (between the Seller and the Buyer) shall be sent to the Seller.
+                        </li>
+                    </ul>
+                </p>
+                <p style="">
+                    <div class=""><h2>Disclaimers and Limitations of Liability</h2></div>
+
+                </p>
+                <p style="">
+                    Brigho is only liable for money sent to us by our clients and kept in our custody and we can be entrusted with safe-keeping your hard-earned money. We understand that this is not our money but money meant either for the Buyer or/and the Seller. To this end we go to great lengths to ensure these monies are kept in the safest possible way.
+                </p>
+                <p style="">
+                    However, Brigho is not liable for any item being sent or purchased between the Buyer and the Seller. This is particularly so because we do not inspect item neither do we transport/ship/deliver items because we are not a haulage company. Liability on all items is left in the hands of the Buyer and the Seller.
+                </p>
+                <p style="">
+                    We therefore advice all Buyers to be completely satisfied with items they receive from a Seller before instructing Brigho to conclude a transaction. Brigho will not refund any money or items after a concluding confirmation has been received from one or both parties.
+                </p>
+                <p style="">
+                    <div class=""><h2>Privacy & Security</h2></div>
+
+                </p>
+                <p style="">
+                    Brigho assures that our clients’ money is kept safe until the transaction has been consummated after which money is sent to the various parties in percentages and amount pre agreed.
+                </p>
+                <p style="">
+                    Brigho does not disclose the name, details or information of clients to anyone. However, as a registered company, should there be need for an investigation on any of our clients such details may be released to appropriate Law enforcement agencies carrying out any of such investigations.
+                </p>
+                <p style="justify-content:stretch">
+                    <div class=""><h2>Indemnity</h2></div>
+                </p>
+                <p style="">
+                    HadRelTah owners of the Brigho App a registered company under Nigeria Law is an entity that can sue and can be sued. To this end, the following situations are cases where Brigho shall not take responsibilities for losses:
+                </p>
+                <p style="">
+                    <ul style="">
+                        <li>
+                            To complete a transaction, the Buyer MUST verify the Delivery Number using the Brigho app.
+                            <span class="color-blue-light">
+                                It is the responsibility of the Seller and Buyer to ensure that the Buyer verifies the Delivery Number and clicks on the “Satisfied. Pay Seller” button or the “Not Satisfied. Please Refund” button on the app before releasing the items to the Buyer or returning the items to the Sellers agent.
+                            </span>
+                        </li>
+                        <li>
+                            Brigho will not take responsibility for situations where the goods are released to the Buyer without the delivery number being confirmed.
+                        </li>
+                        <li>
+                            Users are expected to secure their Brigho accounts by ensuring that they keep their passwords secret to themselves only. Although, Brigho being a responsible organization will ensure it deploys all international technologies and standards in securing your accounts, however, we will not be liable in cases of account hacking or revealing of passwords by our clients.
+                        </li>
+                        <li>
+                            Brigho assures that our clients’ money is kept safe until the transaction has been consummated after which money is sent to the various parties in percentages and amount pre agreed.
+                        </li>
+                    </ul>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="trans-number" />
+<input type="hidden" id="delivcode" />
+<input type="hidden" id="buyertransactiondetails" />
+
+<input type="hidden" class="form-control" id="seller_transaction_code" />
+<input type="hidden" disabled class="form-control" id="email_address"
+       placeholder="Email Address" value="transactions@brigho.com">
+<input type="hidden" id="transaction_cost" />
+<script>
+
+    var uri = "http://medicall-002-site7.ctempurl.com/api/ahhtapi";
+    //var uri = "http://localhost:49244/api/ahhtapi";
+
+     
+</script>
