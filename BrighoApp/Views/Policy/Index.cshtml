@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Brigho</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Finapp HTML Mobile Template">
+    <meta name="keywords" content="bootstrap, mobile template, cordova, phonegap, mobile, html, responsive" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+</head>
+
+<body>
+
+    <!-- loader -->
+    <div id="loader">
+        <img src="assets/img/logo-icon.png" alt="icon" class="loading-icon">
+    </div>
+    <!-- * loader -->
+    <!-- App Header -->
+    <div class="appHeader">
+        <div class="left">
+            <a href="javascript:;" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+        </div>
+    </div>
+    <!-- * App Header -->
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-2 text-center">
+            <div class="card">
+                <div class="card-body pt-3 pb-3">
+                    @*<img src="assets/img/apple-touch-icon.png" alt="image" class="imaged w-50 ">*@
+                    <h2 class="mt-2">  Refund & Return Policy</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section mt-2 listview simple-listview inset">
+
+
+            <div style="padding:10px">
+                Returns on Brigho refers to item(s) that the Seller as sent to the Buyer, but the Buyer is dissatisfied with
+                the item(s) and wants to return the item(s) back to the Buyer. This situation only arises when the Buyer has
+                already made a financial commitment for the transaction by paying the agreed
+                amount (cost of the Item(s) + cost of shipping + Brigho commission) to Brigho.
+            </div>
+        </div>
+
+        <div class="section mt-2 listview simple-listview inset">
+            <p style="padding:10px">
+                We understand that both the Seller and the Buyer have committed funds to the one-way shipping cost for
+                the item(s). That is while the Seller has made a financial payment to his logistic company/person to have
+                the item(s) sent to the Buyer, the Buyer has also committed financially by paying the same cost of one-way
+                shipping to Brigho.
+            </p>
+            <p style="padding:10px">
+                Recall, the Buyer has already made payment to Brigho for the one-way shipping of the item(s) and this
+                unequivocally will be paid to the Seller irrespective of all things as stated in our ToC&U. This will
+                happen when the Buyer is satisfied with the item(s) and wants to pay for it.
+            </p>
+            <p style="padding:10px">
+                However, we expect that there will be situations where the Buyer upon seeing the item(s) would not want
+                to pay for the item(s) for several reasons such as damaged item(s), sub standard item(s), wrong item(s)
+                etc. In such situations, we understand that the Buyer will request a refund for his money.
+            </p>
+            <p style="padding:10px">
+                Therefore, in cases where the Buyer wants to return the item(s), it is expected that there will be an
+                additional cost for shipping the item back to the Seller. This additional cost shall be split into 2
+                equals of 50% each between the Buyer and the Seller. Hence, in situations of refund requested by the Buyer,
+                s/he shall lose:
+                <ul>
+                    <li>
+                        Full amount of the initial cost of delivery
+                    </li>
+                    <li>
+                        An additional 50% of the initial cost of delivery
+                    </li>
+                    <li>
+                        2.5% commission to Brigho
+                    </li>
+                </ul>
+            </p>
+            <p style="padding:10px">
+                The full amount of the initial cost of delivery shall be paid to the Seller to recuperate his/her
+                initial payment to his logistic company/person incurred while sending the item(s) to the Buyer.
+            </p>
+            <p style="padding:10px"> <p>
+                The additional 50% of the initial cost of delivery shall be paid to the Seller to offset 50% of the
+                cost he/her will incur to have his item(s) returned to him/her.
+            </p>
+            <p style="padding:10px">
+                The 2.5% Brigho commission shall be service charge on this transaction accruing to Brigho.
+            </p>
+            <p style="padding:10px">
+                The outstanding balance after these deductions shall be paid to the Buyer as his/her refund.
+            </p>
+            <p style="padding:10px">
+                This shall be calculated as follows:
+                <table border="0" class="padding:10px">
+                    <tr>
+                        <td>
+                            Cost of item(s)	-	(A)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Brigho Commission 	-	(B)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Cost of Delivery	-	(C)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Refund Amount 	= A - B	- (C + {50% of C})
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <p style="padding:10px">
+                Kindly note that on such occasion as a dissatisfied item which you do not want, ensure you click the
+                <strong><i>“Not Satisfied. Please Refund”</i></strong> button. If you do this, based on our ToC&U, we will be committed to
+                refunding your money into your bank account of choice.
+            </p>
+            <p style="padding:10px">
+                However, should you mistakenly or otherwise click on the <strong><i>“Satisfied. Pay Seller”</i></strong> button, we shall be
+                compelled to make payment to the Seller and you shall not be refunded.
+            </p>
+        </div>
+
+
+
+    </div>
+    <!-- * App Capsule -->
+    <!-- * App Sidebar -->
+    <!-- ///////////// Js Files ////////////////////  -->
+    <!-- Jquery -->
+    <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap-->
+    <script src="assets/js/lib/popper.min.js"></script>
+    <script src="assets/js/lib/bootstrap.min.js"></script>
+    <!-- Ionicons -->
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <!-- Owl Carousel -->
+    <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Base Js File -->
+    <script src="assets/js/base.js"></script>
+
+
+</body>
+
+</html>

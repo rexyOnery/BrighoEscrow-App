@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Brigho</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Finapp HTML Mobile Template">
+    <meta name="keywords" content="bootstrap, mobile template, cordova, phonegap, mobile, html, responsive" />
+    @*<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">*@
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png" sizes="32x32">
+    <link rel="shortcut icon" href="/assets/img/favicon.png">
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    
+</head>
+
+<body>
+
+    <!-- loader -->
+    <div id="loader">
+        <img src="/assets/img/logo-icon.png" alt="icon" class="loading-icon">
+    </div>
+    <!-- * loader -->
+    <!-- App Header -->
+    <div class="appHeader bg-dark text-light">
+        <div class="left">
+            <a href="#" class="headerButton" data-toggle="modal" data-target="#sidebarPanel">
+                <ion-icon name="menu-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            <img src="/assets/img/logo.png" alt="logo" class="logo">
+        </div>
+        <div class="right">
+            <a href="javascript:;" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+    </div>
+    <!-- * App Header -->
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+
+        <!-- Wallet Card -->
+        @RenderBody()
+        <!-- * News -->
+        <!-- app footer -->
+        @*<div class="appFooter">
+                <div class="footer-title">
+                    Copyright © Brigho @DateTime.Now.Year. All Rights Reserved.
+                </div>
+            </div>*@
+        <!-- * app footer -->
+
+    </div>
+    <!-- * App Capsule -->
+    <!-- App Sidebar -->
+    <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <!-- profile box -->
+                    <!-- menu -->
+                    <div class="listview-title mt-1 text-primary text-large">Menu</div>
+                    <ul class="listview flush transparent no-line image-listview">
+                        <li>
+                            <a href="/seller" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="pie-chart-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Dashboard
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/seller/newtransaction" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    New Transaction
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/faq" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    FAQ
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/procedure" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Transaction Procedure
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/policy" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Refund & Return Policy
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/terms" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Terms (ToC&U)
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/settlement" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Settlement &amp; Complaints
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/contact" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="chatbubble-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Support
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/changepassword" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="chatbubble-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Change Password
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:logOut();" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="log-out-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Log out
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- * menu -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script> 
+            
+        function logOut() {
+            //localStorage.clear();
+            location.href = "/admin";
+        }
+    </script>
+    <!-- * App Sidebar -->
+    <!-- ///////////// Js Files ////////////////////  -->
+    <!-- Jquery -->
+    <script src="/assets/js/lib/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap-->
+    <script src="/assets/js/lib/popper.min.js"></script>
+    <script src="/assets/js/lib/bootstrap.min.js"></script>
+    <!-- Ionicons -->
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <!-- Owl Carousel -->
+    <script src="/assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Base Js File -->
+    <script src="/assets/js/base.js"></script>
+
+</body>
+
+</html>

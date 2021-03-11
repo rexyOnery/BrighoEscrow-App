@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "Payment";
+}
+
+
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+<div class="section mt-2 text-center">
+    <h1>Verification Code</h1>
+    <h4>Enter the 4 digit verification code</h4>
+</div>
+<div class="section mb-5 p-2">
+    <form>
+        <div class="form-group basic">
+            <input type="text" class="form-control verification-input" id="smscode" placeholder="••••"
+                   maxlength="10">
+        </div>
+
+        <div class="form-button-group transparent">
+            <div class="spinner-grow text-info hidden" id="veriSpinner" role="status"></div>
+            <button type="button" id="btnVerify" class="btn btn-primary btn-block btn-lg">Verify</button>
+        </div>
+
+    </form>
+</div>
+
+<div class="hidden" id="DialogIconedInfo" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <ion-icon name="card-outline"></ion-icon>
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title">Status</h5>
+            </div>
+            <div class="modal-body">
+                Verification Code: <i class="fa fa-shopping-bag"></i> CONFIRMED
+            </div>
+            <div class="modal-footer">
+                <div class="btn-inline">
+                    <a href="#" class="btn" data-dismiss="modal"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
