@@ -6,6 +6,79 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ChangePassword\**" />
+    <Compile Remove="Views\Contact\**" />
+    <Compile Remove="Views\FAQ\**" />
+    <Compile Remove="Views\Home\**" />
+    <Compile Remove="Views\Policy\**" />
+    <Compile Remove="Views\Privacy\**" />
+    <Compile Remove="Views\Procedure\**" />
+    <Compile Remove="Views\Seller\**" />
+    <Compile Remove="Views\Settlement\**" />
+    <Compile Remove="Views\Terms\**" />
+    <Content Remove="Views\ChangePassword\**" />
+    <Content Remove="Views\Contact\**" />
+    <Content Remove="Views\FAQ\**" />
+    <Content Remove="Views\Home\**" />
+    <Content Remove="Views\Policy\**" />
+    <Content Remove="Views\Privacy\**" />
+    <Content Remove="Views\Procedure\**" />
+    <Content Remove="Views\Seller\**" />
+    <Content Remove="Views\Settlement\**" />
+    <Content Remove="Views\Terms\**" />
+    <EmbeddedResource Remove="Views\ChangePassword\**" />
+    <EmbeddedResource Remove="Views\Contact\**" />
+    <EmbeddedResource Remove="Views\FAQ\**" />
+    <EmbeddedResource Remove="Views\Home\**" />
+    <EmbeddedResource Remove="Views\Policy\**" />
+    <EmbeddedResource Remove="Views\Privacy\**" />
+    <EmbeddedResource Remove="Views\Procedure\**" />
+    <EmbeddedResource Remove="Views\Seller\**" />
+    <EmbeddedResource Remove="Views\Settlement\**" />
+    <EmbeddedResource Remove="Views\Terms\**" />
+    <None Remove="Views\ChangePassword\**" />
+    <None Remove="Views\Contact\**" />
+    <None Remove="Views\FAQ\**" />
+    <None Remove="Views\Home\**" />
+    <None Remove="Views\Policy\**" />
+    <None Remove="Views\Privacy\**" />
+    <None Remove="Views\Procedure\**" />
+    <None Remove="Views\Seller\**" />
+    <None Remove="Views\Settlement\**" />
+    <None Remove="Views\Terms\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\ChangePasswordController.cs" />
+    <Compile Remove="Controllers\ContactController.cs" />
+    <Compile Remove="Controllers\FAQController.cs" />
+    <Compile Remove="Controllers\HomeController.cs" />
+    <Compile Remove="Controllers\PolicyController.cs" />
+    <Compile Remove="Controllers\PrivacyController.cs" />
+    <Compile Remove="Controllers\ProcedureController.cs" />
+    <Compile Remove="Controllers\SellerController.cs" />
+    <Compile Remove="Controllers\SettlementController.cs" />
+    <Compile Remove="Controllers\TermsController.cs" />
+    <Compile Remove="Controllers\UtilityController.cs" />
+    <Compile Remove="Services\MailService.cs" />
+    <Compile Remove="Services\OvedTransacts.cs" />
+    <Compile Remove="Services\PasswordHashing.cs" />
+    <Compile Remove="Services\RandomGenerator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Admin\Forgot.cshtml" />
+    <None Include="Views\Admin\Index.cshtml" />
+    <None Include="Views\Admin\LoginSelect.cshtml" />
+    <None Include="Views\Admin\Pin.cshtml" />
+    <None Include="Views\Admin\Register.cshtml" />
+    <None Include="Views\Admin\ResetPassword.cshtml" />
+    <None Include="Views\Buyer\FollowUp.cshtml" />
+    <None Include="Views\Buyer\Index.cshtml" />
+    <None Include="Views\Buyer\Success.cshtml" />
+    <None Include="Views\Buyer\TransactionDetails.cshtml" />
+    <None Include="Views\Buyer\TransVerification.cshtml" />
+    <None Include="Views\Buyer\Verify.cshtml" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
