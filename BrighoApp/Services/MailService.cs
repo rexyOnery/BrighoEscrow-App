@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BrighoApp.Services
 {
+    //mailservice to work on
     public class MailService
     {
         [Obsolete]

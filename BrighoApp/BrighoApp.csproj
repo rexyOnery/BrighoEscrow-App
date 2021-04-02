@@ -52,7 +52,6 @@
     <Compile Remove="Controllers\ChangePasswordController.cs" />
     <Compile Remove="Controllers\ContactController.cs" />
     <Compile Remove="Controllers\FAQController.cs" />
-    <Compile Remove="Controllers\HomeController.cs" />
     <Compile Remove="Controllers\PolicyController.cs" />
     <Compile Remove="Controllers\PrivacyController.cs" />
     <Compile Remove="Controllers\ProcedureController.cs" />
@@ -60,10 +59,6 @@
     <Compile Remove="Controllers\SettlementController.cs" />
     <Compile Remove="Controllers\TermsController.cs" />
     <Compile Remove="Controllers\UtilityController.cs" />
-    <Compile Remove="Services\MailService.cs" />
-    <Compile Remove="Services\OvedTransacts.cs" />
-    <Compile Remove="Services\PasswordHashing.cs" />
-    <Compile Remove="Services\RandomGenerator.cs" />
   </ItemGroup>
 
   <ItemGroup>
