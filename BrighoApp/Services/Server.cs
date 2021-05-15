@@ -860,6 +860,165 @@ namespace BrighoApp.Services
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private static Ahhttransaction BuyerTransactionDetailsDTOx(Ahhttransaction user) =>
+       new Ahhttransaction
+       {
+           TransactionDate = user.TransactionDate,
+           TransactionCode = user.TransactionCode,
+           ConfirmationCode = user.ConfirmationCode,
+           TransactionDescription = user.TransactionDescription,
+           TotalCost = user.TotalCost,
+           AgreedPrice = user.AgreedPrice,
+           AhhtCommission = user.AhhtCommission,
+           ShippingCost = user.ShippingCost,
+           BuyerAccountName = user.BuyerAccountName,
+           BuyerAccountNumber = user.BuyerAccountNumber,
+           BuyerBankName = user.BuyerBankName,
+           BuyerMobileNumber = user.BuyerMobileNumber,
+           SellerMobileNumber = user.SellerMobileNumber,
+           TransactionStatus = user.TransactionStatus,
+           Reasons = user.Reasons,
+           Paid = user.Paid,
+           Processed = user.Processed,
+           RefundDate = user.RefundDate
+       };
+
+
+        internal static bool SendMailx(Message message)
+        {
+
+            MailMessage m = new MailMessage();
+            SmtpClient sc = new SmtpClient();
+            m.From = new MailAddress("inquiries@brigho.com");
+            m.To.Add("inquiries@brigho.com");
+            m.Subject = message.Name;
+            m.Body = "Email: " + message.Email + "<br/><br />" + message.MessageBody;
+            m.IsBodyHtml = true;
+            sc.Host = "mail.brigho.com";
+            string str1 = "gmail.com";
+            string str2 = message.Email.ToLower();
+            if (str2.Contains(str1))
+            {
+                try
+                {
+                    sc.Port = 8889;
+                    sc.Credentials = new System.Net.NetworkCredential("inquiries@brigho.com", "Stefny101.Brigho2021");
+                    sc.EnableSsl = false;
+                    sc.Send(m);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    var err = e;
+                    return false;
+                }
+            }
+            else
+            {
+                try
+                {
+                    sc.Port = 25;
+                    sc.Credentials = new System.Net.NetworkCredential("inquiries@brigho.com", "Stefny101.Brigho2021");
+                    sc.EnableSsl = false;
+                    sc.Send(m);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+        }
+
+        internal static async Task<List<Ahhttransaction>> GetCurrentDasboadx()
+        {
+            using (var _context = new DB_A5DE44_HoldingContext())
+            {
+                return await _context.Ahhttransactions
+                    .ToListAsync();
+            }
+        }
+
+        internal static int CheckBuyerCountx(string phone)
+        {
+            using (var _context = new DB_A5DE44_HoldingContext())
+            {
+                int ctx = 0;
+                try
+                {
+                    var _ctx = _context.Ahhttransactions
+                        .Where(c => c.BuyerMobileNumber.Equals(phone))
+                        .Select(x => SellerTransactionDTO(x))
+                    .ToList();
+
+                    ctx = _ctx.Count(c => c.TransactionStatus.Equals("warning"));
+
+                }
+                catch
+                {
+                    return 0;
+                }
+                return ctx;
+            }
+        }
+        internal static int CheckSellerCountx(string phone)
+        {
+            using (var _context = new DB_A5DE44_HoldingContext())
+            {
+                int ctx = 0;
+                try
+                {
+                    var _ctx = _context.Ahhttransactions
+                        .Where(c => c.SellerMobileNumber.Equals(phone))
+                    .Select(x => SellerTransactionDTO(x))
+                    .ToList();
+
+                    ctx = _ctx.Count(c => c.TransactionStatus.Equals("warning"));
+                }
+                catch
+                {
+                    return 0;
+                }
+                return ctx;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
  

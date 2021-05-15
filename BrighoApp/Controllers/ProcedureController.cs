@@ -8,6 +8,7 @@ namespace BrighoApp.Controllers
 {
     public class ProcedureController : Controller
     {
+        //the procedire to work on
         public IActionResult Index()
         {
             return View();
