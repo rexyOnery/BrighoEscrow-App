@@ -6,33 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Contact\**" />
-    <Compile Remove="Views\FAQ\**" />
     <Compile Remove="Views\Policy\**" />
-    <Compile Remove="Views\Privacy\**" />
     <Compile Remove="Views\Terms\**" />
-    <Content Remove="Views\Contact\**" />
-    <Content Remove="Views\FAQ\**" />
     <Content Remove="Views\Policy\**" />
-    <Content Remove="Views\Privacy\**" />
     <Content Remove="Views\Terms\**" />
-    <EmbeddedResource Remove="Views\Contact\**" />
-    <EmbeddedResource Remove="Views\FAQ\**" />
     <EmbeddedResource Remove="Views\Policy\**" />
-    <EmbeddedResource Remove="Views\Privacy\**" />
     <EmbeddedResource Remove="Views\Terms\**" />
-    <None Remove="Views\Contact\**" />
-    <None Remove="Views\FAQ\**" />
     <None Remove="Views\Policy\**" />
-    <None Remove="Views\Privacy\**" />
     <None Remove="Views\Terms\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\ContactController.cs" />
-    <Compile Remove="Controllers\FAQController.cs" />
     <Compile Remove="Controllers\PolicyController.cs" />
-    <Compile Remove="Controllers\PrivacyController.cs" />
     <Compile Remove="Controllers\TermsController.cs" />
   </ItemGroup>
 
@@ -50,8 +35,11 @@
     <None Include="Views\Buyer\TransVerification.cshtml" />
     <None Include="Views\Buyer\Verify.cshtml" />
     <None Include="Views\ChangePassword\Index.cshtml" />
+    <None Include="Views\Contact\Index.cshtml" />
+    <None Include="Views\FAQ\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Privacy\Index.cshtml" />
     <None Include="Views\Procedure\Index.cshtml" />
     <None Include="Views\Seller\Index.cshtml" />
     <None Include="Views\Seller\NewTransaction.cshtml" />

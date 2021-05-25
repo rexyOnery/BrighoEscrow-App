@@ -8,6 +8,7 @@ namespace BrighoApp.Controllers
 {
     public class PrivacyController : Controller
     {
+        //Added the contact, privacy, policy pages
         public IActionResult Index()
         {
             return View();
