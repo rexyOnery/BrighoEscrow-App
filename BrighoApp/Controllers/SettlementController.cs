@@ -8,6 +8,7 @@ namespace BrighoApp.Controllers
 {
     public class SettlementController : Controller
     {
+        //settle policy 
         public IActionResult Index()
         {
             return View();

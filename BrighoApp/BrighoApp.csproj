@@ -10,25 +10,21 @@
     <Compile Remove="Views\FAQ\**" />
     <Compile Remove="Views\Policy\**" />
     <Compile Remove="Views\Privacy\**" />
-    <Compile Remove="Views\Settlement\**" />
     <Compile Remove="Views\Terms\**" />
     <Content Remove="Views\Contact\**" />
     <Content Remove="Views\FAQ\**" />
     <Content Remove="Views\Policy\**" />
     <Content Remove="Views\Privacy\**" />
-    <Content Remove="Views\Settlement\**" />
     <Content Remove="Views\Terms\**" />
     <EmbeddedResource Remove="Views\Contact\**" />
     <EmbeddedResource Remove="Views\FAQ\**" />
     <EmbeddedResource Remove="Views\Policy\**" />
     <EmbeddedResource Remove="Views\Privacy\**" />
-    <EmbeddedResource Remove="Views\Settlement\**" />
     <EmbeddedResource Remove="Views\Terms\**" />
     <None Remove="Views\Contact\**" />
     <None Remove="Views\FAQ\**" />
     <None Remove="Views\Policy\**" />
     <None Remove="Views\Privacy\**" />
-    <None Remove="Views\Settlement\**" />
     <None Remove="Views\Terms\**" />
   </ItemGroup>
 
@@ -37,9 +33,7 @@
     <Compile Remove="Controllers\FAQController.cs" />
     <Compile Remove="Controllers\PolicyController.cs" />
     <Compile Remove="Controllers\PrivacyController.cs" />
-    <Compile Remove="Controllers\SettlementController.cs" />
     <Compile Remove="Controllers\TermsController.cs" />
-    <Compile Remove="Controllers\UtilityController.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +58,7 @@
     <None Include="Views\Seller\Payment.cshtml" />
     <None Include="Views\Seller\Status.cshtml" />
     <None Include="Views\Seller\TransactionDetail.cshtml" />
+    <None Include="Views\Settlement\Index.cshtml" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
