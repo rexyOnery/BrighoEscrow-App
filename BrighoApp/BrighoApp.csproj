@@ -6,22 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Policy\**" />
-    <Compile Remove="Views\Terms\**" />
-    <Content Remove="Views\Policy\**" />
-    <Content Remove="Views\Terms\**" />
-    <EmbeddedResource Remove="Views\Policy\**" />
-    <EmbeddedResource Remove="Views\Terms\**" />
-    <None Remove="Views\Policy\**" />
-    <None Remove="Views\Terms\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Controllers\PolicyController.cs" />
-    <Compile Remove="Controllers\TermsController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Views\Admin\Forgot.cshtml" />
     <None Include="Views\Admin\Index.cshtml" />
     <None Include="Views\Admin\LoginSelect.cshtml" />
@@ -39,6 +23,7 @@
     <None Include="Views\FAQ\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Policy\Index.cshtml" />
     <None Include="Views\Privacy\Index.cshtml" />
     <None Include="Views\Procedure\Index.cshtml" />
     <None Include="Views\Seller\Index.cshtml" />
@@ -47,6 +32,7 @@
     <None Include="Views\Seller\Status.cshtml" />
     <None Include="Views\Seller\TransactionDetail.cshtml" />
     <None Include="Views\Settlement\Index.cshtml" />
+    <None Include="Views\Terms\Index.cshtml" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />

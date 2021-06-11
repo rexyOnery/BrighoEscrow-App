@@ -8,6 +8,7 @@ namespace BrighoApp.Controllers
 {
     public class PolicyController : Controller
     {
+        //brigho return policy and terms
         public IActionResult Index()
         {
             return View();
