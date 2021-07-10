@@ -40,7 +40,11 @@ namespace BrighoApp.Services
             return builder.ToString();
         }
          
-
+        /// <summary>
+        /// returns the month represented by the number
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
         public string Month(int m)
         {
             switch (m)
