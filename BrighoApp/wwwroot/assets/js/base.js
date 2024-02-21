@@ -16,8 +16,8 @@ $(document).ready(function () {
     $('#transaction_date').attr('max', maxDate);
 
 
-    try { document.createEvent("TouchEvent");  }
-    catch (e) { location.href = "http://www.brigho.com"; }
+    //try { document.createEvent("TouchEvent");  }
+    //catch (e) { location.href = "http://www.brigho.com"; }
 
     if (localStorage.getItem('phone') != null) {
         $("#ephone").val(localStorage.getItem('phone'));
